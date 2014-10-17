@@ -24,3 +24,7 @@ could mute discussions that don't interest you? Well, you're in the right place!
 
 1. Click the "view it on GitHub" link in a notification email.
 2. See the Subscribe button? You're unsubscribed!
+
+## Enjoy
+
+![inbox-zero](https://cloud.githubusercontent.com/assets/122102/4683550/a4923134-5627-11e4-8c0a-748145f58daf.png)
