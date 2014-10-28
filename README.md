@@ -5,7 +5,7 @@ could mute discussions that don't interest you? Well, you're in the right place!
 
 ## Installation
 
-1. Unzip [Mute GitHub Thread.zip](https://github.com/dgraham/mute-github-thread/raw/master/Mute%20GitHub%20Thread.zip).
+1. Unzip [Mute GitHub Thread.zip](https://github.com/dgraham/mute-github-thread/raw/f048fc035218a6ed586856e872770c69d81fbc13/Mute%20GitHub%20Thread.zip).
 2. Move the Mute GitHub Thread file to your `Library/Services` folder.
 
 ## Keyboard shortcuts
