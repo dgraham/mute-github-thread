@@ -23,7 +23,7 @@ function clean(url) {
 }
 
 function http(url) {
-  return !!url.match(/^http/)
+  return /^http/.test(url)
 }
 
 function app() {
