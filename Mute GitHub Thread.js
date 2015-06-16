@@ -6,6 +6,10 @@ function unsubscribe(header) {
   return header.name().toLowerCase() === 'list-unsubscribe'
 }
 
+function replyTo(header) {
+  return header.name().toLowerCase() === 'in-reply-to'
+}
+
 function compact(value) {
   return value !== undefined
 }
@@ -32,29 +36,53 @@ function app() {
   return app
 }
 
-function mute(url) {
-  app().doShellScript('curl ' + url + ' &> /dev/null &')
+function curl(url) {
+  return 'curl ' + url + ' &> /dev/null &'
 }
 
-function announce(messages) {
-  var label = (messages.length === 1) ? 'conversation' : 'conversations'
-  var text = messages.length + ' ' + label + ' muted.'
+function mute(commands) {
+  if (commands.length) {
+    app().doShellScript(commands.join("\n"))
+  }
+}
+
+function announce(count) {
+  var label = (count === 1) ? 'conversation' : 'conversations'
+  var text = count + ' ' + label + ' muted.'
   app().displayNotification(text, {withTitle: 'Thread Muted'})
+}
+
+function groupBy(values, fn) {
+  return values.reduce(function(groups, value) {
+    var key = fn(value)
+    groups[key] = groups[key] || []
+    groups[key].push(value)
+    return groups
+  }, {})
+}
+
+function thread(message) {
+  var reply = message.headers().find(replyTo)
+  return reply ? clean(reply.content()) : message.messageId()
 }
 
 function run(input, parameters) {
   var app = Application('Mail')
-  var messages = app.selection()
 
-  messages
+  var conversations = groupBy(app.selection(), thread)
+  var messages = Object.keys(conversations).map(function(key) {
+    return conversations[key][0]
+  })
+
+  var commands = messages
     .map(header)
     .filter(compact)
     .map(urls)
     .reduce(flatten, [])
     .map(clean)
     .filter(http)
-    .forEach(mute)
+    .map(curl)
 
-  announce(messages)
+  mute(commands)
+  announce(commands.length)
 }
-
