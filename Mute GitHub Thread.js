@@ -31,7 +31,7 @@ function http(url) {
 }
 
 function app() {
-  var app = Application.currentApplication()
+  const app = Application.currentApplication()
   app.includeStandardAdditions = true
   return app
 }
@@ -47,14 +47,14 @@ function mute(commands) {
 }
 
 function announce(count) {
-  var label = (count === 1) ? 'conversation' : 'conversations'
-  var text = count + ' ' + label + ' muted.'
+  const label = (count === 1) ? 'conversation' : 'conversations'
+  const text = count + ' ' + label + ' muted.'
   app().displayNotification(text, {withTitle: 'Thread Muted'})
 }
 
 function groupBy(values, fn) {
   return values.reduce(function(groups, value) {
-    var key = fn(value)
+    const key = fn(value)
     groups[key] = groups[key] || []
     groups[key].push(value)
     return groups
@@ -71,19 +71,19 @@ function headers(message) {
 }
 
 function thread(message) {
-  var reply = headers(message).find(replyTo)
+  const reply = headers(message).find(replyTo)
   return reply ? clean(reply.content()) : message.messageId()
 }
 
 function run(input, parameters) {
-  var app = Application('Mail')
+  const app = Application('Mail')
 
-  var conversations = groupBy(app.selection(), thread)
-  var messages = Object.keys(conversations).map(function(key) {
+  const conversations = groupBy(app.selection(), thread)
+  const messages = Object.keys(conversations).map(function(key) {
     return conversations[key][0]
   })
 
-  var commands = messages
+  const commands = messages
     .map(header)
     .filter(compact)
     .map(urls)
