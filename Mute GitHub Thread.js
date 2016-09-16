@@ -77,12 +77,8 @@ function thread(message) {
 
 function run(input, parameters) {
   const app = Application('Mail')
-
   const conversations = groupBy(app.selection(), thread)
-  const messages = Object.keys(conversations).map(function(key) {
-    return conversations[key][0]
-  })
-
+  const messages = Object.keys(conversations).map(key => conversations[key][0])
   const commands = messages
     .map(header)
     .filter(compact)
