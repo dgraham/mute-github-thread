@@ -1,5 +1,5 @@
 function header(message) {
-  return message.headers().find(unsubscribe)
+  return headers(message).find(unsubscribe)
 }
 
 function unsubscribe(header) {
@@ -61,8 +61,17 @@ function groupBy(values, fn) {
   }, {})
 }
 
+function headers(message) {
+  return message.allHeaders().trim().split("\n").map(function(line) {
+    const [all, key, value] = line.trim().match(/([\w-]+):(.*)/)
+    const name = () => key.trim()
+    const content = () => value.trim()
+    return {name, content}
+  })
+}
+
 function thread(message) {
-  var reply = message.headers().find(replyTo)
+  var reply = headers(message).find(replyTo)
   return reply ? clean(reply.content()) : message.messageId()
 }
 
