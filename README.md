@@ -27,4 +27,4 @@ could mute discussions that don't interest you? Well, you're in the right place!
 
 ## Enjoy
 
-![inbox-zero](https://cloud.githubusercontent.com/assets/122102/4683550/a4923134-5627-11e4-8c0a-748145f58daf.png)
+![inbox-zero](https://cloud.githubusercontent.com/assets/122102/18610073/5cf9026e-7ccf-11e6-9caa-ceb751d334de.png)
