@@ -1,6 +1,6 @@
 # Mute GitHub Mail Threads
 
-Do you use OS X Mail to read GitHub issue and pull request notification emails? Wish you
+Do you use macOS Mail to read GitHub issue and pull request notification emails? Wish you
 could mute discussions that don't interest you? Well, you're in the right place!
 
 ## Installation
