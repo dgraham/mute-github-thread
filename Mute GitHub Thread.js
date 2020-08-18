@@ -18,10 +18,6 @@ function urls(header) {
   return header.content().split(',')
 }
 
-function flatten(values, value) {
-  return values.concat(value)
-}
-
 function clean(url) {
   return url.trim().replace(/[<>]/g, '')
 }
@@ -82,8 +78,7 @@ function run(input, parameters) {
   const commands = messages
     .map(header)
     .filter(compact)
-    .map(urls)
-    .reduce(flatten, [])
+    .flatMap(urls)
     .map(clean)
     .filter(http)
     .map(curl)
